@@ -1,0 +1,40 @@
+.container {
+  width: 30%;
+  height: 100%;
+  background-color: antiquewhite;
+  display: flex;
+  align-items: center;
+  overflow: auto;
+  .container-s {
+    height: 100%;
+    background-color: rgb(245, 245, 245);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+
+  }
+  .resize {
+    width: 7px;
+    height: 100%;
+    background-color: rgb(80, 80, 80);
+    cursor: ew-resize;
+  }
+  .userName {
+    width: 100%;
+    padding: 1vw;
+    box-sizing: border-box;
+    background-color: rgb(212, 212, 212);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    h1 {
+      font-size: 1.5vw;
+    }
+    span {
+      font-size: 3vw;
+      cursor: pointer;
+
+    }
+  }
+}

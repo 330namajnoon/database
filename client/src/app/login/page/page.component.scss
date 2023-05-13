@@ -1,0 +1,28 @@
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h1 {
+            font-size: 1.5vw;
+            color: red;
+        }
+        input {
+            width: 20vw;
+            margin: 2vw;
+            font-size: 1.5vw;
+            padding: 1vw;
+        }
+        a {
+            margin: 2vw;
+            font-size: 2vw;
+        }
+    }
+}
