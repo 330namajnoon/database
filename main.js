@@ -1,9 +1,11 @@
 import SinaSQL from "./sinaSQL-main.js";
+
 const sinaSQL = new SinaSQL();
+
 
 async function main() {
    
-    await sinaSQL.connect("SinaMajnoon","1234");
+    console.log(await sinaSQL.signup("SinaMajnoon","sina.majnoonhjk@gmail.com","1234"));
     
 }
 main();
