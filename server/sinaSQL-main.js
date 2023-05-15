@@ -1,6 +1,6 @@
 
 export default function SinaSQL() {
-    this.hostURL = 'http://localhost:4000/';
+    this.hostURL = 'https://heady-mulberry-respect.glitch.me/';
     this.connected = { connected: false, databases: [] };
     this.userData = { userName: '', password: '' };
 }
