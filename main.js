@@ -5,7 +5,7 @@ const sinaSQL = new SinaSQL();
 
 async function main() {
    
-    console.log(await sinaSQL.signup("SinaMajnoon","sina.majnoonhjk@gmail.com","1234"));
+    console.log("hola mundo");
     
 }
 main();
