@@ -150,7 +150,7 @@ app.post("/updateDataById", multer().none(), (req, res) => {
         if (err) res.send(JSON.stringify(false));
         let newdata = JSON.parse(data.toString()).map(d => {
             let data = d;
-            if(data.id == req.body.id) data = JSON.parse(req.body.data);
+            if(data.id == parseInt(req.body.id)) data = JSON.parse(req.body.data);
             return data;
         });
         fs.writeFile(`./database/${req.body.userName + '/' + req.body.databaseName + '/' + req.body.tableName}.json`, JSON.stringify(newdata), (err) => {

@@ -99,7 +99,7 @@ SinaSQL.prototype.uploadData = function (databaseName, tableName, data) {
         return 'no estas connectado!';
     }
 };
-SinaSQL.prototype.addData = function (databaseName, tableName, data) {
+SinaSQL.prototype.uploadDataById = function (databaseName , tableName,id, data) {
     var _this = this;
     if (this.connected.connected) {
         return new Promise(function (resolve) {
@@ -108,6 +108,7 @@ SinaSQL.prototype.addData = function (databaseName, tableName, data) {
             formData.append('tableName', tableName);
             formData.append('databaseName', databaseName);
             formData.append('data', JSON.stringify(data));
+            formData.append('id', id);
             formData.append('userName', _this.getUserData().userName);
             http.open('POST', _this.hostURL + 'addData', true);
             http.onreadystatechange = function () {
