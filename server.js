@@ -145,6 +145,20 @@ app.post("/deleteDataById", multer().none(), (req, res) => {
         })
     })
 })
+app.post("/updateDataById", multer().none(), (req, res) => {
+    fs.readFile(`./database/${req.body.userName + '/' + req.body.databaseName + '/' + req.body.tableName}.json`, (err, data) => {
+        if (err) res.send(JSON.stringify(false));
+        let newdata = JSON.parse(data.toString()).map(d => {
+            let data = d;
+            if(data.id == req.body.id) data = JSON.parse(req.body.data);
+            return data;
+        });
+        fs.writeFile(`./database/${req.body.userName + '/' + req.body.databaseName + '/' + req.body.tableName}.json`, JSON.stringify(newdata), (err) => {
+            if (err) res.send(JSON.stringify(false));
+            res.send(JSON.stringify(newdata));
+        })
+    })
+})
 app.post("/deleteTable", multer().none(), (req, res) => {
 
     fs.readFile(`./database/${req.body.userName}/userData.json`, (err, data) => {

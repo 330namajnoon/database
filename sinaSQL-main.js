@@ -99,6 +99,29 @@ SinaSQL.prototype.uploadData = function (databaseName, tableName, data) {
         return 'no estas connectado!';
     }
 };
+SinaSQL.prototype.addData = function (databaseName, tableName, data) {
+    var _this = this;
+    if (this.connected.connected) {
+        return new Promise(function (resolve) {
+            var http = new XMLHttpRequest();
+            var formData = new FormData();
+            formData.append('tableName', tableName);
+            formData.append('databaseName', databaseName);
+            formData.append('data', JSON.stringify(data));
+            formData.append('userName', _this.getUserData().userName);
+            http.open('POST', _this.hostURL + 'addData', true);
+            http.onreadystatechange = function () {
+                if (http.readyState == 4 && http.status == 200) {
+                    resolve(http.responseText);
+                }
+            };
+            http.send(formData);
+        });
+    }
+    else {
+        return 'no estas connectado!';
+    }
+};
 SinaSQL.prototype.downloadData = function (databaseName, tableName) {
     var _this = this;
     if (this.connected.connected) {
