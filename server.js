@@ -7,11 +7,33 @@ const path = require("path");
 const pdp = path.join(__dirname, "./");
 const port = process.env.PORT || 4000;
 const app = express();
+const uploadMedia = multer.diskStorage({
+    destination:(cd,file,req)=> {
+        cd(null,"./database");
+    },
+    filename:(cd,file,req)=> {
+        cd(null,file.originalname);
+    }
+})
 app.use(cors());
 app.use(express.static(pdp));
 const server = http.createServer(app);
 server.listen(port, () => {
     console.log(`server is up on port ${port}!`);
+})
+
+app.post("/uploadMedia",uploadMedia(),(req,res)=> {
+    fs.rename(`./database/${req.file.originalname}`,`./database/${req.body.newName}`,(err)=> {
+        fs.readFile(`./database/${req.file.originalname}`,(err,data)=> {
+            if(err)throw err;
+            fs.readlink(`./database/${req.body.newName}`,(err)=> {
+
+                fs.writeFile(`./database/${req.body.userName}/media`,data,(err)=> {
+                    res.send(`/database/${req.userName}/media/${req.body.newName}`);
+                })
+            })
+        })
+    })
 })
 
 app.post("/login", multer().none(), (req, res) => {
@@ -53,6 +75,7 @@ app.post("/signup", multer().none(), (req, res) => {
             fs.writeFile(`./database/users.json`, JSON.stringify(users), (err) => {
                 if (err) throw err;
                 fs.mkdirSync(`./database/${newUser.userName}`);
+                fs.mkdirSync(`./database/${newUser.userName}/media`);
                 newUser.databases = [];
                 fs.appendFileSync(`./database/${newUser.userName}/userData.json`, JSON.stringify(newUser));
                 res.send(true);

@@ -99,6 +99,9 @@ SinaSQL.prototype.uploadData = function (databaseName, tableName, data) {
         return 'no estas connectado!';
     }
 };
+SinaSQL.prototype.uploadMedia = function(media = {},newName = "") {
+    
+}
 SinaSQL.prototype.uploadDataById = function (databaseName , tableName,id, data) {
     var _this = this;
     if (this.connected.connected) {
